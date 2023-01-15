@@ -50,9 +50,11 @@ class FormViewController: UITableViewController {
             case let (nil, oldIndex?):
                 tableView.deleteSections([oldIndex], with: .automatic)
             }
-            let footer = tableView.footerView(forSection: index)
-            footer?.textLabel?.text = tableView(tableView, titleForFooterInSection: index)
-            footer?.setNeedsLayout()
+            if let i = newIndex {
+                let footer = tableView.footerView(forSection: i)
+                footer?.textLabel?.text = tableView(tableView, titleForFooterInSection: i)
+                footer?.setNeedsLayout()
+            }
             
         }
         tableView.endUpdates()
